@@ -14,7 +14,6 @@ RUN apt update -y && apt install -y \
     && wget -nv -O install-tl.tar.gz http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
     && mkdir install-tl \
     && tar -xzf install-tl.tar.gz --directory install-tl --strip-components=1 \
-#
     && printf "%s\n" \
         "selected_scheme scheme-full" \
         "option_doc 0" \
@@ -35,6 +34,6 @@ RUN apt update -y && apt install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home/
+WORKDIR /workdir/
 
-CMD [ "sleep", "infinity" ]
+CMD ["bash"]
