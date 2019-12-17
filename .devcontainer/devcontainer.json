@@ -1,0 +1,13 @@
+{
+    "name": "texlive",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "texlive",
+    "workspaceFolder": "/home/",
+    "shutdownAction": "stopCompose",
+    "extensions": [
+        "james-yu.latex-workshop"
+    ],
+    "settings": {
+        "editor.formatOnSave": true
+    }
+}
