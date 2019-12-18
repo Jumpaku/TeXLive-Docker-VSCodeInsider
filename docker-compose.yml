@@ -4,7 +4,7 @@ services:
   texlive:
     image: 'jumpaku/texlive-docker'
     working_dir: '/workdir/'
-    command: ["sleep", "infinity"]
+    command: ['latexmk', '-pvc']
     volumes: 
-      - './../:/workdir/'
-      - './../.latexmkrc:/root/.latexmkrc:ro'
+      - './proceedings/:/workdir/'
+      - './.latexmkrc:/root/.latexmkrc:ro'

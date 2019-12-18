@@ -1,9 +1,8 @@
 {
     "name": "texlive",
-    "dockerComposeFile": "docker-compose.yml",
+    "dockerComposeFile": "./docker-compose.yml",
     "service": "texlive",
-    "workspaceFolder": "/home/",
-    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/workdir/",
     "extensions": [
         "james-yu.latex-workshop"
     ],
