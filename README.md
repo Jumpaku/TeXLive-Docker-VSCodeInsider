@@ -1,12 +1,21 @@
 # texlive-docker
 
-## Run with docker-compose
+## Configure .latexmkrc
 
-Execute the following command
-```sh
-docker-compose run texlive
+```perl
+#!/usr/bin/env perl
+$pdf_mode         = 3;
+$latex            = 'pdflatex -halt-on-error';
+$latex_silent     = 'pdflatex -halt-on-error -interaction=batchmode';
+$bibtex           = 'pbibtex';
+$dvipdf           = 'dvipdfmx %O -o %D %S';
+$makeindex        = 'mendex %O -o %D %S';
 ```
-with the following `docker-compose.yml`
+
+##  Run latexmk with docker-compose
+
+### Add docker-compose.yml
+
 ```yml
 version: '3'
 
@@ -17,13 +26,34 @@ services:
     command: ['latexmk', '-pvc']
     volumes: 
       - './:/workdir/'
-#      - './.latexmkrc:/root/.latexmkrc:ro'
+     - './.latexmkrc:/root/.latexmkrc:ro'
+```
+
+### Execute docker-compose
+
+```sh
+docker-compose run texlive
 ```
 
 ## Open in container with Visual Studio Code Insiders
 
-Open your directory with the following files.
-* `.devcontainer/devcontainer.json` 
+### Add .devcontainer/docker-compose.yml
+
+```yml
+version: '3'
+
+services: 
+  texlive:
+    image: 'jumpaku/texlive-docker'
+    working_dir: '/workdir/'
+    command: ["sleep", "infinity"]
+    volumes: 
+      - './../:/workdir/'
+      - './../.latexmkrc:/root/.latexmkrc:ro'
+```
+
+### Add .devcontainer/devcontainer.json
+
 ```json
 {
     "name": "texlive",
@@ -38,30 +68,9 @@ Open your directory with the following files.
     }
 }
 ```
-* `.devcontainer/docker-compose.yml`
-```yml
-version: '3'
 
-services: 
-  texlive:
-    image: 'jumpaku/texlive-docker'
-    working_dir: '/workdir/'
-    command: ["sleep", "infinity"]
-    volumes: 
-      - './../:/workdir/'
-#      - './../.latexmkrc:/root/.latexmkrc:ro'
-```
+### Open Visual Studio Code Insiders
 
-## Configure .latexmkrc
+1. command + shift + P
+2. `Remote-Containers: Open Folder in Container`
 
-Mount the following `.latexmkrc` to `/root/.latexmkrc` in the container.
-
-```perl
-#!/usr/bin/env perl
-$pdf_mode         = 3;
-$latex            = 'pdflatex -halt-on-error';
-$latex_silent     = 'pdflatex -halt-on-error -interaction=batchmode';
-$bibtex           = 'pbibtex';
-$dvipdf           = 'dvipdfmx %O -o %D %S';
-$makeindex        = 'mendex %O -o %D %S';
-```
