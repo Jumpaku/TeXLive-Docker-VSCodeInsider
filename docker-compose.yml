@@ -6,5 +6,5 @@ services:
     working_dir: '/workdir/'
     command: ['latexmk', '-pvc']
     volumes: 
-      - './proceedings/:/workdir/'
+      - './:/workdir/'
       - './.latexmkrc:/root/.latexmkrc:ro'
