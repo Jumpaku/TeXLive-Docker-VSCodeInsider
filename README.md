@@ -26,7 +26,7 @@ services:
     command: ['latexmk', '-pvc']
     volumes: 
       - './:/workdir/'
-     - './.latexmkrc:/root/.latexmkrc:ro'
+      - './.latexmkrc:/root/.latexmkrc:ro'
 ```
 
 ### Execute docker-compose
