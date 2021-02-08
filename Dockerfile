@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:20.04
 
 ENV PATH $PATH:/usr/local/texlive/2019/bin/x86_64-linux
 
