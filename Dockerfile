@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ENV PATH $PATH:/usr/local/texlive/2020/bin/x86_64-linux
+ENV PATH $PATH:/usr/local/texlive/2021/bin/x86_64-linux
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && apt install -y \
